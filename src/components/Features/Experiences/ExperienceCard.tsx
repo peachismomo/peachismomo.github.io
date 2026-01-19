@@ -1,5 +1,5 @@
 import { Card, Grid, Stack, Typography } from "@mui/material";
-import React, { type ReactNode } from "react";
+import { type ReactNode } from "react";
 import type { ExperienceProps } from "../../../types/types";
 import { formatJobDates } from "../../../utils/DateFormat";
 
