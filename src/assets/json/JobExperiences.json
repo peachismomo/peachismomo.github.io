@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Game Engine Developer",
+    "company" : "Wankers Pte Ltd",
+    "description": "Developed a custom game engine using C++ with real-time rendering via OpenGL. Implemented UI using ImGui and created a component-based architecture with CMake build support.",
+    "dateStart": "2023-05-01",
+    "dateEnd": "2023-12-01",
+    "techStack": ["C++", "OpenGL", "ImGui", "CMake"]
+  },
+  {
+    "title": "Graphics Tools Engineer",
+    "company" : "B Pte Ltd",
+    "description": "Worked on internal tools for artists and designers using C# and WinForms. Integrated live rendering previews with OpenGL, and built custom plugins to extend ImGui behavior.",
+    "dateStart": "2022-06-01",
+    "dateEnd": "2022-12-01",
+    "techStack": ["C#", "OpenGL", "ImGui", "C++"]
+  },
+  {
+    "title": "Full Stack Web Developer Intern",
+    "company" : "Wankers Pte Ltd",
+    "description": "Built admin dashboard and internal tools for managing cloud storage on Amazon S3. Used React with TypeScript and Node.js for backend APIs. Handled authentication, file uploads, and data visualization.",
+    "dateStart": "2021-09-01",
+    "dateEnd": "2022-03-01",
+    "techStack": ["React", "TypeScript", "Node.js", "Amazon S3"]
+  },
+  {
+    "title": "Automation & Scripting Engineer",
+    "company" : "Wankers Pte Ltd",
+    "description": "Created internal automation scripts and devtools for game asset management using Python. Automated build pipelines and setup Premake scripts for multi-platform builds.",
+    "dateStart": "2020-01-01",
+    "dateEnd": "2020-12-01",
+    "techStack": ["Python", "Premake", "C++"]
+  }
+]
