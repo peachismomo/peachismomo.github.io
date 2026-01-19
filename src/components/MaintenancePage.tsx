@@ -1,6 +1,10 @@
 import { Box, Typography, Stack } from "@mui/material";
+import { GLCanvas } from "./WebGL/GLCanvas";
+import { FloatRotateScene } from "./WebGL/Shaders/FloatRotateScene";
 
 export default function MaintenancePage() {
+  const url = "/peach.svg";
+
   return (
     <Box
       minHeight="100vh"
@@ -10,13 +14,7 @@ export default function MaintenancePage() {
       bgcolor="background.default"
     >
       <Stack spacing={3} alignItems="center" maxWidth={520} textAlign="center">
-        <img
-          src="/peach.svg"
-          alt="PeachIsMomo"
-          width={96}
-          height={96}
-          style={{ opacity: 0.9 }}
-        />
+        <GLCanvas scene={FloatRotateScene(url)} />
 
         <Typography variant="h3" fontWeight={700}>
           PeachIsMomo
