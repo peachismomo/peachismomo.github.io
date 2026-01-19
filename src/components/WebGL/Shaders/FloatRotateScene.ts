@@ -29,7 +29,7 @@ export const FloatRotateScene = (svgUrl: string) =>
 
       // scale based on aspect so it looks consistent
       const aspect = width / height;
-      const base = 0.5; // overall size (clip-space)
+      const base = 1.0; // overall size (clip-space)
       const sx = base * (aspect >= 1 ? 0.6 : 0.6 * aspect);
       const sy = base * 0.6;
 
