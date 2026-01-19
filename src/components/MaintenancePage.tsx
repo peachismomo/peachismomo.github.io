@@ -14,7 +14,13 @@ export default function MaintenancePage() {
       bgcolor="background.default"
     >
       <Stack spacing={3} alignItems="center" maxWidth={520} textAlign="center">
-        <GLCanvas scene={FloatRotateScene(url)} />
+        <Box
+          sx={{
+            aspectRatio: "1 / 1",
+          }}
+        >
+          <GLCanvas scene={FloatRotateScene(url)} />
+        </Box>
 
         <Typography variant="h3" fontWeight={700}>
           PeachIsMomo
