@@ -1,0 +1,62 @@
+{
+    "groups": [
+        {
+            "title": "Languages",
+            "items": [
+                "C/C++",
+                "C#",
+                "TypeScript",
+                "JavaScript",
+                "SQL",
+                "Python",
+                "GLSL",
+                "JSON / YAML"
+            ]
+        },
+        {
+            "title": "C++ Libraries & Frameworks",
+            "items": [
+                "Dear ImGui",
+                "GLFW",
+                "PhysX",
+                "EnTT",
+                "Assimp",
+                "DirectXTex",
+                "stb_image"
+            ]
+        },
+        {
+            "title": "Web Stack",
+            "items": [
+                "React",
+                "Node.js",
+                "Express",
+                "Redux Toolkit",
+                "Material UI"
+            ]
+        },
+        {
+            "title": "Build & DevOps",
+            "items": [
+                "CMake",
+                "Premake",
+                "Ninja / MSBuild",
+                "vcpkg / Conan",
+                "Vite",
+                "Webpack / CRA",
+                "GitHub Actions"
+            ]
+        },
+        {
+            "title": "Tools & Debugging",
+            "items": [
+                "VSCode",
+                "Visual Studio",
+                "Git",
+                "RenderDoc",
+                "NVIDIA Nsight",
+                "Postman"
+            ]
+        }
+    ]
+}

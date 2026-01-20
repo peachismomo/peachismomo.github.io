@@ -1,6 +1,7 @@
 import { Box, Typography, Stack } from "@mui/material";
 import { GLCanvas } from "./WebGL/GLCanvas";
 import { FloatRotateScene } from "./WebGL/Shaders/FloatRotateScene";
+import { AppConfig } from "../config";
 
 export default function MaintenancePage() {
   const url = "/peach.svg";
@@ -29,7 +30,7 @@ export default function MaintenancePage() {
         <Typography variant="body1" color="text.secondary">
           This site is currently under maintenance.
           <br />
-          I’m polishing a few things — check back soon!
+          {AppConfig.maintenanceMessage}
         </Typography>
 
         <Typography variant="caption" color="text.disabled">

@@ -1,34 +1,55 @@
 [
   {
-    "title": "Game Engine Developer",
-    "company" : "Wankers Pte Ltd",
-    "description": "Developed a custom game engine using C++ with real-time rendering via OpenGL. Implemented UI using ImGui and created a component-based architecture with CMake build support.",
-    "dateStart": "2023-05-01",
-    "dateEnd": "2023-12-01",
-    "techStack": ["C++", "OpenGL", "ImGui", "CMake"]
+    "title": "Software Developer Intern",
+    "company": "Bake",
+    "desc": "",
+    "when": "May 2025 - Apr 2026",
+    "techStack": [
+      "TypeScript",
+      "JavaScript",
+      "Node.js",
+      "Express",
+      "React",
+      "Vite",
+      "CRA 5",
+      "Redux",
+      "REST API",
+      "PostgreSQL",
+      "GitHub Actions"
+    ]
   },
   {
-    "title": "Graphics Tools Engineer",
-    "company" : "B Pte Ltd",
-    "description": "Worked on internal tools for artists and designers using C# and WinForms. Integrated live rendering previews with OpenGL, and built custom plugins to extend ImGui behavior.",
-    "dateStart": "2022-06-01",
-    "dateEnd": "2022-12-01",
-    "techStack": ["C#", "OpenGL", "ImGui", "C++"]
+    "title": "Teaching Assistant",
+    "company": "DigiPen Institute of Technology Singapore",
+    "desc": "As a Teaching Assistant, I provided academic support to junior students across a range of subjects, focusing on enhancing their understanding through personalized tutoring and one-on-one guidance. My responsibilities included assisting professors during lab sessions by answering student inquiries and offering individualized support. Additionally, I led after-school study groups, helping students solidify their grasp of course materials in a collaborative setting.\n\nSubjects I have tutored include, but are not limited to:\n\nCSD1121: High-level Programming\nCSD1171: High-level Programming 2\nCSD1130: Game Implementation Techniques",
+    "when": "Aug 2023 - Mar 2024",
+    "techStack": [
+      "C#",
+      "C++",
+      "OpenGL",
+      "ImGui",
+      "Linear Algebra",
+      "Data Structures",
+      "Object-Oriented Design",
+      "Game Engine Architecture",
+      "Real-time Rendering",
+      "Debugging & Profiling",
+      "Memory Management",
+      "Physics Fundamentals",
+      "Version Control (Git)"
+    ]
   },
   {
-    "title": "Full Stack Web Developer Intern",
-    "company" : "Wankers Pte Ltd",
-    "description": "Built admin dashboard and internal tools for managing cloud storage on Amazon S3. Used React with TypeScript and Node.js for backend APIs. Handled authentication, file uploads, and data visualization.",
-    "dateStart": "2021-09-01",
-    "dateEnd": "2022-03-01",
-    "techStack": ["React", "TypeScript", "Node.js", "Amazon S3"]
-  },
-  {
-    "title": "Automation & Scripting Engineer",
-    "company" : "Wankers Pte Ltd",
-    "description": "Created internal automation scripts and devtools for game asset management using Python. Automated build pipelines and setup Premake scripts for multi-platform builds.",
-    "dateStart": "2020-01-01",
-    "dateEnd": "2020-12-01",
-    "techStack": ["Python", "Premake", "C++"]
+    "title": "Software Engineer Intern",
+    "company": "MQ Spectrum Pte Ltd",
+    "desc": "Interned as a Software Engineer at MQ Spectrum Pte Ltd, where I initially joined as a unit tester. Through initiative and determination, I successfully advocated to be more involved in the software development process. I was eventually entrusted with leading the development of a new project from the ground up, while also contributing to other ongoing projects by resolving bugs and implementing minor features.",
+    "when": "Oct 2018 - Apr 2019",
+    "techStack": [
+      "C#",
+      ".NET Framework",
+      "WinForms",
+      "Unit Testing",
+      "SQL Server"
+    ]
   }
 ]

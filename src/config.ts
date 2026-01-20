@@ -1,4 +1,5 @@
 export const AppConfig = {
-  siteEnabled: false,
-  maintenanceMessage: "Portfolio is under maintenance. Check back soon!",
+  siteEnabled: true,
+  maintenanceMessage: "I’m polishing a few things — check back soon!",
+  status: "Up to date"
 } as const;
