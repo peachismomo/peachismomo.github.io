@@ -23,7 +23,7 @@ import Markdown from "./Markdown";
 
 const FEATURED_REPOS = new Set<string>([]);
 
-function Projects() {
+function GithubProjects() {
   const [projects, setProjects] = useState<ProjectType[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -67,9 +67,9 @@ function Projects() {
 
   return (
     <Section
-      id="projects"
-      title="Featured Projects"
-      subtitle="Selected C++ work — rendering, tools, systems."
+      id="github"
+      title="Github"
+      subtitle="Some of my projects on Github"
     >
       {loading && (
         <Typography
@@ -230,4 +230,4 @@ function Projects() {
   );
 }
 
-export default Projects;
+export default GithubProjects;

@@ -1,6 +1,6 @@
 import { type ReactNode } from "react";
 import Experiences from "./Sections/Experiences";
-import Projects from "./Sections/Projects";
+import GithubProjects from "./Sections/GithubProjects";
 import Toolbox from "./Sections/Toolbox";
 import { Box } from "@mui/material";
 
@@ -12,8 +12,8 @@ function Body(): ReactNode {
         mx: "auto",
       }}
     >
-      <Projects />
       <Experiences />
+      <GithubProjects />
       <Toolbox />
     </Box>
   );
