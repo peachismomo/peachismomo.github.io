@@ -1,73 +1,104 @@
-# React + TypeScript + Vite
+# peachismomo.github.io
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio site built with **React 19**, **TypeScript**, **Vite**, and **Material UI**.
 
-Currently, two official plugins are available:
+This site showcases my work in:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- C++ engine & tooling development  
+- Rendering and graphics systems  
+- Game / engine architecture (ECS, animation, serialization)  
+- Full-stack development  
 
-## React Compiler
+It also dynamically pulls featured projects from GitHub and renders their READMEs directly on the site.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React 19
+- TypeScript
+- Vite
+- Material UI (MUI)
+- Emotion (styling engine)
+- React Markdown + GFM
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Development
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+This project runs on Windows, macOS, and Linux.
+
+### Prerequisites
+
+- Node.js 24+ (see .nvmrc)
+- npm (bundled with Node)
+
+You can install Node in one of these ways:
+
+#### Using Node Version Manager
+
+Using a version manager keeps your environment clean and consistent.
+
+**macOS / Linux (nvm):**
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+nvm install
+nvm use
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+**Windows (nvm-windows):**
+Download and install from:
+https://github.com/coreybutler/nvm-windows/releases
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Then in a new terminal:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+nvm install 24.13.0
+nvm use 24.13.0
+```
+
+**Verify your setup:**
+```bash
+node -v
+npm -v
+```
+
+You should see the Node and npm installed.
+
+### Setup
+
+If you haven't already, clone the repository and install the dependencies:
+
+**Clone and install**
+```bash
+git clone https://github.com/peachismomo/peachismomo.github.io.git
+cd peachismomo.github.io
+npm install
+```
+
+### Run (Local Development)
+
+**Start the local dev server**
+```bash
+npm run dev
+```
+
+You should be able to run the website on http:://localhost:5173
+
+Vite supports hot module reload, so changes update instantly.
+
+### Build Production
+
+The repository has been setup to deploy to github pages on push via github actions.
+
+**To create a production build locally**
+```bash
+npm run build
+```
+
+The production output will be generated in the dist/ directory.
+
+**You can preview the production build locally**
+```bash
+npm run preview
 ```
