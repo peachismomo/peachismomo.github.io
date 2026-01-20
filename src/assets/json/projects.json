@@ -1,0 +1,235 @@
+[
+    {
+        "slug": "invenio",
+        "name": "Invenio Engine",
+        "shortDescription": "A custom-built 3D game engine and editor developed from scratch in C++20, featuring a data-oriented ECS architecture, real-time OpenGL rendering, C# scripting via Mono, animation systems, and a reflection-driven toolchain for rapid game development.",
+        "fullDescription": "**Overview:**\n\nInvenio is a real-time 3D game engine built from the ground up in C++20, paired with a custom editor for rapid iteration and gameplay development. It is designed around a data-oriented architecture, with a focus on performance, extensibility, and tooling parity with commercial engines.\n\nThe engine features a modern OpenGL rendering backend, an ImGui-based editor, a C# scripting layer via Mono, and a growing reflection and serialization system that powers both runtime and editor workflows.\n\n**Rendering & Graphics:**\n- Forward and deferred-style rendering pipelines built on OpenGL and GLSL.\n- Multi-pass rendering architecture supporting post-processing and compositing.\n- Real-time lighting with extensible shader stages (vertex, fragment, geometry, compute).\n- Post-processing framework suitable for bloom, tone mapping, color grading, and screen-space effects.\n\n**Editor & Tooling:**\n- Fully custom ImGui-based editor.\n- Transform gizmos for scene manipulation.\n- Inspector panels driven by reflection.\n- Asset and scene management workflows designed for rapid iteration.\n\n**Animation System:**\n- Skeletal animation playback with hierarchical transform propagation.\n- Keyframe-driven animation clips.\n- Event hooks for triggering gameplay logic during animation.\n\n**Scripting & Gameplay:**\n- C# scripting powered by Mono.\n- Native-to-managed bindings for engine APIs.\n- Script components attachable to entities.\n- Hot-reload style workflows for fast iteration.\n\n**Engine Infrastructure:**\n- C++ reflection system for editor integration and serialization.\n- JSON-based asset and scene serialization.\n- Modular engine/editor split for clean separation of runtime and tooling.\n- Audio integration via FMOD.\n- Texture processing pipeline using DirectXTex.\n\nInvenio serves as both a technical sandbox and a production-ready foundation, enabling full games such as **Tarot’s Fate** to be developed entirely on top of a custom-built engine stack.",
+        "when": "Sep 2024 - Apr 2025",
+        "techStack": [
+            "C++20",
+            "OpenGL",
+            "GLSL",
+            "EnTT (ECS)",
+            "Data-Oriented Design",
+            "ImGui",
+            "GLFW",
+            "GLM",
+            "Assimp",
+            "PhysX",
+            "C#",
+            "Mono",
+            "FMOD",
+            "DirectXTex",
+            "Premake",
+            "Animation",
+            "Keyframes",
+            "Serialization",
+            "Reflection Systems"
+        ],
+        "headerImage": {
+            "src": "/engine.png",
+            "alt": "Invenio Engine"
+        },
+        "additionalImages": [
+            {
+                "src": "/engine2.png",
+                "alt": "Example Engine"
+            },
+            {
+                "src": "/engine3.png",
+                "alt": "Example Engine"
+            },
+            {
+                "src": "/engine4.png",
+                "alt": "Example Engine"
+            }
+        ],
+        "attachedFiles": []
+    },
+    {
+        "slug": "invenio",
+        "name": "Tarot's Fate",
+        "shortDescription": "Tarot’s Fate is a 3D, third-person perspective Action game with an emphasis on combat.\nThe player plays as Salem, a little girl who is on a quest to reach the Golden Castle to save her parents.",
+        "fullDescription": "Tarot's Fate is a 3D, third-person perspective Action Combat game.\nThe player plays as a young mage, Salem, who is on a quest to save her parents.\n\nThe game was powered by our Invenio Engine, a 3D engine built from scratch.",
+        "when": "Sep 2024 - Apr 2025",
+        "techStack": [
+            "C#",
+            "Gameplay Programming"
+        ],
+        "headerImage": {
+            "src": "/main_menu.png",
+            "alt": "Tarot's Fate Game Logo"
+        },
+        "additionalImages": [
+            {
+                "src": "/gameplay.png",
+                "alt": "Gameplay 1"
+            },
+            {
+                "src": "/gameplay2.png",
+                "alt": "Gameplay 2"
+            },
+            {
+                "src": "/gameplay3.png",
+                "alt": "Gameplay 3"
+            },
+            {
+                "src": "/gameplay4.png",
+                "alt": "Gameplay 4"
+            },
+            {
+                "src": "/gameplay5.png",
+                "alt": "Gameplay 5"
+            },
+            {
+                "src": "/gameplay6.png",
+                "alt": "Gameplay 6"
+            },
+            {
+                "src": "",
+                "alt": "Gameplay Trailer",
+                "youtubeId": "Wlx6ssyCdBQ"
+            }
+        ],
+        "attachedFiles": []
+    },
+    {
+        "slug": "terrain-gen",
+        "name": "Procedural Polygonal Terrain Generation Framework",
+        "shortDescription": "A terrain generation system utilizing C++20 and OpenGL 4.5 to produce expansive, highly realistic 3D landscapes in real-time environments. The system integrates sophisticated algorithms and data structures to deliver both performance and visual fidelity, pushing the boundaries of procedural content generation in game development and simulations.",
+        "fullDescription": "**Key Achievements:**\n\n**Poisson Disk Sampling for Natural Distribution:** Implemented Poisson Disk Sampling to achieve uniform point distribution, ensuring stable and efficient mesh generation that mimics natural formations.\n**Delaunay Triangulation for Robust Mesh Construction:** Utilized Delaunay triangulation to generate optimized terrain meshes, ensuring seamless and realistic terrain structures for large-scale environments.\n**Perlin Noise for Realistic Elevation:** Applied dynamic Perlin noise to create diverse natural terrain features like valleys and mountains. The system allows for fine-tuning parameters like frequency and amplitude to produce varied landscapes.\n**Seed-Based Terrain Generation:** Integrated a seed-based system that generates entirely unique terrains with each input seed. By simply altering the seed value, the system can produce an infinite variety of landscapes, ensuring reusability and diversity in real-time environments.\n**High-Performance Optimization:** Achieved smooth performance through parallelized normal calculations and efficient shading techniques, enabling real-time rendering without sacrificing detail.\n\nThis system provides a powerful, flexible solution for procedural terrain generation, allowing developers to create diverse, dynamic environments with customizable landscapes and infinite variability.",
+        "when": "Jul 2024 - Jul 2024",
+        "techStack": [
+            "C++",
+            "OpenGL",
+            "GLSL",
+            "ImGui",
+            "GLFW",
+            "GLM"
+        ],
+        "headerImage": {
+            "src": "/default-seed.png",
+            "alt": "Default Seed Terrain"
+        },
+        "additionalImages": [
+            {
+                "src": "/low-vert-scale.png",
+                "alt": "Low Vertical Scaling Terrain"
+            },
+            {
+                "src": "/high-oct.png",
+                "alt": "High Octave Terrain"
+            },
+            {
+                "src": "/low-point-count.png",
+                "alt": "Low Point Count Terrain"
+            }
+        ],
+        "attachedFiles": [
+            {
+                "name": "Project Report (PDF)",
+                "type": "pdf",
+                "url": "/files/report.pdf"
+            }
+        ]
+    },
+    {
+        "slug": "spatial-partition",
+        "name": "Spatial Data Structures Visualization",
+        "shortDescription": "This project focuses on visualising the algorithms that optimize collision detection through efficient management of spatial data structures using Bounding Volume Hierarchies, Adaptive Octrees, and Binary Space Partitioning.",
+        "fullDescription": "Some additional features include a free camera with similar properties to sandbox games such as Minecraft, a top down minimap, as well as a good looking GUI to facilitate the manipulation of data at runtime.",
+        "when": "Jun 2024 - Jun 2024",
+        "techStack": [
+            "C++",
+            "OpenGL",
+            "GLSL",
+            "ImGui",
+            "GLFW",
+            "Assimp",
+            "GLM",
+            "Data Structures"
+        ],
+        "headerImage": {
+            "src": "/bsp-tree2.png",
+            "alt": "BSP Tree"
+        },
+        "additionalImages": [
+            {
+                "src": "/bounding-hierarchy-aabb.png",
+                "alt": "Bounding Hierarchy (AABB)"
+            },
+            {
+                "src": "/bounding-hierarchy-sphere.png",
+                "alt": "Bounding Hierarchy (Sphere)"
+            },
+            {
+                "src": "/bounding-volumes-aabb.png",
+                "alt": "Bounding Volumes (AABB)"
+            },
+            {
+                "src": "/bounding-volumes-spheres.png",
+                "alt": "Bounding Volumes (Sphere)"
+            },
+            {
+                "src": "/bsp-tree.png",
+                "alt": "BSP Tree"
+            },
+            {
+                "src": "/oct-tree.png",
+                "alt": "OctTree Partitioning"
+            }
+        ],
+        "attachedFiles": []
+    },
+    {
+        "slug": "illusion",
+        "name": "Illusion Engine",
+        "shortDescription": "As part of the DigiPen curriculum, our team of 8 spent two trimesters developing a custom engine, which ultimately powered the game Twilight. The engine featured a variety of capabilities, including C# scripting, real-time 2D lighting systems, a user-friendly editor for designers, and several core engine components inspired by commercial game engines.",
+        "fullDescription": "**Contributions:** As the Technical Lead, I oversaw all programming aspects and was deeply involved in the development of every system and module within the engine. My responsibilities included conducting research to implement new features and guiding my team through technical challenges. I also designed the engine architecture, organized team meetings to delegate tasks, and communicated closely with designers to ensure smooth integration between the engine and game development.\n\n**Among my key contributions, I am most proud of:**\n- Developing the graphics system with multi-pass rendering, dynamic lighting, and instancing.\n- Integrating the Mono C# library to enable scripting, complete with script parameters that could be modified via the editor and hot reloading that automatically detects changes in the script files and applies them immediately.",
+        "when": "Sep 2023 - Apr 2024",
+        "techStack": [
+            "C++",
+            "OpenGL",
+            "GLSL",
+            "ImGui",
+            "GLFW",
+            "GLM",
+            "C#",
+            "Mono",
+            "FMOD"
+        ],
+        "headerImage": {
+            "src": "/engine.png",
+            "alt": "Engine"
+        },
+        "additionalImages": [],
+        "attachedFiles": []
+    },
+    {
+        "slug": "illusion",
+        "name": "Twilight",
+        "shortDescription": "TwiLight is a Puzzle Adventure game, with an emphasis on using puzzle solving to explore the dungeon. The game has a top-down perspective, which allows the player to see more of the map and the environmental puzzles that they are solving. You play as Elio, a boy who finds himself in a mysterious dungeon, trying to escape with the help of a magical fire sprite, Dara.",
+        "fullDescription": "TwiLight’s core mechanic of using a light source to solve puzzles is based on the theme of Light & Dark. The magical fire sprite Dara can inhabit different light sources such as a candle, torch and oil lamp - which gives the light source magical properties such as revealing hidden writings on the wall and pathways.",
+        "when": "Sep 2023 - Apr 2024",
+        "techStack": [
+            "C#",
+            "Gameplay Programming"
+        ],
+        "headerImage": {
+            "src": "/twilight-logo.png",
+            "alt": "Twilight Game"
+        },
+        "additionalImages": [
+            {
+                "src": "/gameplay.png",
+                "alt": "Example Gameplay"
+            },
+            {
+                "src": "",
+                "alt": "Gameplay Trailer",
+                "youtubeId": "kwk77ES5b6U"
+            }
+        ],
+        "attachedFiles": []
+    }
+]

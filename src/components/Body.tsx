@@ -3,6 +3,7 @@ import Experiences from "./Sections/Experiences";
 import GithubProjects from "./Sections/GithubProjects";
 import Toolbox from "./Sections/Toolbox";
 import { Box } from "@mui/material";
+import FeaturedProjects from "./Sections/Projects";
 
 function Body(): ReactNode {
   return (
@@ -13,6 +14,7 @@ function Body(): ReactNode {
       }}
     >
       <Experiences />
+      <FeaturedProjects />
       <GithubProjects />
       <Toolbox />
     </Box>

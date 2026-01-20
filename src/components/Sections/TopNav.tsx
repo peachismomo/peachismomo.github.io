@@ -19,10 +19,10 @@ export interface NavItem {
 }
 
 export const NAV: NavItem[] = [
-  { id: "projects", label: "Projects" },
-  { id: "deep-dives", label: "Deep Dives" },
-  { id: "toolbox", label: "Toolbox" },
   { id: "experience", label: "Experience" },
+  { id: "projects", label: "Projects" },
+  { id: "github", label: "Github Projects" },
+  { id: "toolbox", label: "Toolbox" },
   { id: "contact", label: "Contact" },
 ];
 

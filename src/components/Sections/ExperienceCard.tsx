@@ -1,5 +1,4 @@
 import { Card, CardContent, Typography, Stack, Chip } from "@mui/material";
-import { monoPurple } from "../../themes/Themes";
 import type { JobExperience } from "./Experiences";
 
 interface ExperienceCardProps {
@@ -21,7 +20,7 @@ function ExperienceCard(props: ExperienceCardProps) {
           {props.job.when}
         </Typography>
 
-        <Typography variant="h5" color={monoPurple}>
+        <Typography variant="h5">
           {props.job.title}
         </Typography>
 

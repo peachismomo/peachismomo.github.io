@@ -23,12 +23,16 @@ import Markdown from "./Markdown";
 
 const FEATURED_REPOS = new Set<string>([]);
 
+const PAGE_SIZE = 3;
+
 function GithubProjects() {
   const [projects, setProjects] = useState<ProjectType[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   useEffect(() => {
     let alive = true;
@@ -55,22 +59,35 @@ function GithubProjects() {
     };
   }, []);
 
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE);
+  }, [projects.length]);
+
   const featured = useMemo(() => {
     const picked = projects.filter((p) => FEATURED_REPOS.has(p.title));
     if (picked.length) return picked;
     return [...projects].slice(0, 3);
   }, [projects]);
 
+  // NEW: pick the list to render and paginate it
+  const list = useMemo(() => {
+    const usingFeaturedSet = FEATURED_REPOS.size > 0 && featured.length > 0;
+    return usingFeaturedSet ? featured : projects;
+  }, [projects, featured]);
+
+  const visible = useMemo(() => list.slice(0, visibleCount), [list, visibleCount]);
+  const hasMore = visibleCount < list.length;
+
+  const showMore = () => {
+    setVisibleCount((c) => Math.min(c + PAGE_SIZE, list.length));
+  };
+
   const toggleExpand = (title: string) => {
     setExpanded((prev) => ({ ...prev, [title]: !prev[title] }));
   };
 
   return (
-    <Section
-      id="github"
-      title="Github"
-      subtitle="Some of my projects on Github"
-    >
+    <Section id="github" title="GitHub" subtitle="Some of my projects on GitHub">
       {loading && (
         <Typography
           color="text.secondary"
@@ -81,17 +98,14 @@ function GithubProjects() {
       )}
 
       {error && (
-        <Typography
-          color="error"
-          sx={{ fontFamily: `"JetBrains Mono", monospace` }}
-        >
+        <Typography color="error" sx={{ fontFamily: `"JetBrains Mono", monospace` }}>
           {error}
         </Typography>
       )}
 
       {!loading && !error && (
         <Stack spacing={2.2}>
-          {featured.map((p) => {
+          {visible.map((p) => {
             const isOpen = !!expanded[p.title];
 
             return (
@@ -119,11 +133,7 @@ function GithubProjects() {
                         </IconButton>
                       </Stack>
 
-                      <Typography
-                        variant="body2"
-                        color="text.secondary"
-                        sx={{ mt: 1 }}
-                      >
+                      <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
                         {p.desc || "No description provided."}
                       </Typography>
 
@@ -145,30 +155,8 @@ function GithubProjects() {
                         ))}
                       </Stack>
                     </Box>
-
-                    {/* Media slot */}
-                    {/* <Box
-                      sx={{
-                        width: { xs: "100%", md: 340 },
-                        aspectRatio: "16 / 9",
-                        borderRadius: 2,
-                        border: "1px solid",
-                        borderColor: "divider",
-                        bgcolor: "background.paper",
-                        display: "grid",
-                        placeItems: "center",
-                        color: "text.secondary",
-                        fontFamily: `"JetBrains Mono", monospace`,
-                        fontSize: 12,
-                        p: 2,
-                        overflow: "hidden",
-                      }}
-                    >
-                      Media Preview
-                    </Box> */}
                   </Stack>
 
-                  {/* Expandable README */}
                   <Collapse in={isOpen} timeout="auto" unmountOnExit>
                     <Divider sx={{ my: 2 }} />
 
@@ -183,15 +171,10 @@ function GithubProjects() {
                         "& pre, & code": {
                           fontFamily: `"JetBrains Mono", monospace`,
                         },
-                        // optional: make markdown images behave
                         "& img": { maxWidth: "100%" },
                       }}
                     >
-                      {p.markdown ? (
-                        <Markdown markdown={p.markdown} />
-                      ) : (
-                        "No README"
-                      )}
+                      {p.markdown ? <Markdown markdown={p.markdown} /> : "No README"}
                     </Box>
                   </Collapse>
                 </CardContent>
@@ -207,7 +190,11 @@ function GithubProjects() {
                     Repo
                   </Button>
 
-                  {p.homepage ? (
+                  {p.title === "peachismomo.github.io" && (
+                    <Typography variant="subtitle2">You're here!</Typography>
+                  )}
+
+                  {p.homepage && p.title !== "peachismomo.github.io" ? (
                     <Button
                       size="small"
                       endIcon={<LaunchIcon />}
@@ -217,13 +204,19 @@ function GithubProjects() {
                     >
                       Visit
                     </Button>
-                  ) : (
-                    <></>
-                  )}
+                  ) : null}
                 </CardActions>
               </Card>
             );
           })}
+
+          {hasMore && (
+            <Box sx={{ display: "flex", justifyContent: "center", pt: 1 }}>
+              <Button onClick={showMore} endIcon={<ExpandMoreIcon />}>
+                Show more projects
+              </Button>
+            </Box>
+          )}
         </Stack>
       )}
     </Section>

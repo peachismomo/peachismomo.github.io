@@ -1,4 +1,5 @@
 import { Box, Stack, Typography } from "@mui/material";
+import { monoPurple } from "../../themes/Themes";
 
 function Section({
   id,
@@ -14,7 +15,7 @@ function Section({
   return (
     <Box id={id} sx={{ py: { xs: 6, md: 8 } }}>
       <Stack spacing={1.2} sx={{ mb: 3 }}>
-        <Typography variant="h4" fontWeight={700}>
+        <Typography variant="h4" fontWeight={700} color={monoPurple}>
           {title}
         </Typography>
         {subtitle ? (
