@@ -14,11 +14,11 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import Section from "./Generic/Section";
+import Section from "../Generic/Section";
 import LaunchIcon from "@mui/icons-material/Launch";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import { FetchProjects } from "../api/GithubFetch";
-import type { ProjectType } from "../types/types";
+import { FetchProjects } from "../../api/GithubFetch";
+import type { ProjectType } from "../../types/types";
 import Markdown from "./Markdown";
 
 const FEATURED_REPOS = new Set<string>([]);
@@ -66,15 +66,25 @@ function Projects() {
   };
 
   return (
-    <Section id="projects" title="Featured Projects" subtitle="Selected C++ work — rendering, tools, systems.">
+    <Section
+      id="projects"
+      title="Featured Projects"
+      subtitle="Selected C++ work — rendering, tools, systems."
+    >
       {loading && (
-        <Typography color="text.secondary" sx={{ fontFamily: `"JetBrains Mono", monospace` }}>
+        <Typography
+          color="text.secondary"
+          sx={{ fontFamily: `"JetBrains Mono", monospace` }}
+        >
           Loading projects…
         </Typography>
       )}
 
       {error && (
-        <Typography color="error" sx={{ fontFamily: `"JetBrains Mono", monospace` }}>
+        <Typography
+          color="error"
+          sx={{ fontFamily: `"JetBrains Mono", monospace` }}
+        >
           {error}
         </Typography>
       )}
@@ -87,23 +97,43 @@ function Projects() {
             return (
               <Card key={p.title}>
                 <CardContent>
-                  <Stack direction={{ xs: "column", md: "row" }} spacing={2} alignItems="stretch">
+                  <Stack
+                    direction={{ xs: "column", md: "row" }}
+                    spacing={2}
+                    alignItems="stretch"
+                  >
                     <Box sx={{ flex: 1 }}>
-                      <Stack direction="row" alignItems="center" justifyContent="space-between" gap={2}>
-                        <Typography variant="h5">
-                          {p.title}
-                        </Typography>
+                      <Stack
+                        direction="row"
+                        alignItems="center"
+                        justifyContent="space-between"
+                        gap={2}
+                      >
+                        <Typography variant="h5">{p.title}</Typography>
 
-                        <IconButton onClick={() => toggleExpand(p.title)} aria-label="Toggle README">
+                        <IconButton
+                          onClick={() => toggleExpand(p.title)}
+                          aria-label="Toggle README"
+                        >
                           {isOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                         </IconButton>
                       </Stack>
 
-                      <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{ mt: 1 }}
+                      >
                         {p.desc || "No description provided."}
                       </Typography>
 
-                      <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap" sx={{ mt: 2 }}>
+                      <Stack
+                        direction="row"
+                        spacing={1}
+                        useFlexGap
+                        flexWrap="wrap"
+                        sx={{ mt: 2 }}
+                      >
                         {p.tags?.slice(0, 10).map((t: string) => (
                           <Chip
                             key={t}
@@ -150,26 +180,46 @@ function Projects() {
                         border: "1px solid",
                         borderColor: "divider",
                         p: 2,
-                        "& pre, & code": { fontFamily: `"JetBrains Mono", monospace` },
+                        "& pre, & code": {
+                          fontFamily: `"JetBrains Mono", monospace`,
+                        },
                         // optional: make markdown images behave
                         "& img": { maxWidth: "100%" },
                       }}
                     >
-                      {p.markdown ? <Markdown markdown={p.markdown} /> : "No README"}
+                      {p.markdown ? (
+                        <Markdown markdown={p.markdown} />
+                      ) : (
+                        "No README"
+                      )}
                     </Box>
                   </Collapse>
                 </CardContent>
 
                 <CardActions sx={{ px: 2, pb: 2 }}>
-                  <Button size="small" startIcon={<GitHubIcon />} href={p.htmlUrl} target="_blank" rel="noreferrer">
+                  <Button
+                    size="small"
+                    startIcon={<GitHubIcon />}
+                    href={p.htmlUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     Repo
                   </Button>
 
                   {p.homepage ? (
-                    <Button size="small" endIcon={<LaunchIcon />} href={p.homepage} target="_blank" rel="noreferrer">
+                    <Button
+                      size="small"
+                      endIcon={<LaunchIcon />}
+                      href={p.homepage}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       Visit
                     </Button>
-                  ) : <></>}
+                  ) : (
+                    <></>
+                  )}
                 </CardActions>
               </Card>
             );

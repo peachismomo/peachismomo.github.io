@@ -1,0 +1,53 @@
+import { Card, CardContent, Typography, Stack, Chip } from "@mui/material";
+import { monoPurple } from "../../themes/Themes";
+import type { JobExperience } from "./Experiences";
+
+interface ExperienceCardProps {
+  job: JobExperience;
+}
+
+function ExperienceCard(props: ExperienceCardProps) {
+  return (
+    <Card key={`${props.job.company}-${props.job.title}`}>
+      <CardContent>
+        <Typography
+          variant="overline"
+          sx={{
+            display: "block",
+            mb: 0.5,
+            fontFamily: `"JetBrains Mono", monospace`,
+          }}
+        >
+          {props.job.when}
+        </Typography>
+
+        <Typography variant="h5" color={monoPurple}>
+          {props.job.title}
+        </Typography>
+
+        <Typography variant="subtitle2" sx={{ mb: 3 }}>
+          {props.job.company}
+        </Typography>
+
+        <Typography variant="body2" sx={{ whiteSpace: "pre-line" }}>
+          {props.job.desc}
+        </Typography>
+
+        {/* Tech stack */}
+        <Stack
+          direction="row"
+          spacing={1}
+          useFlexGap
+          flexWrap="wrap"
+          sx={{ mt: 1.6 }}
+        >
+          {props.job.techStack.map((tech) => (
+            <Chip key={tech} label={tech} size="small" variant="outlined" />
+          ))}
+        </Stack>
+      </CardContent>
+    </Card>
+  );
+}
+
+export default ExperienceCard;

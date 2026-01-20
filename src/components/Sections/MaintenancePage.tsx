@@ -1,7 +1,7 @@
 import { Box, Typography, Stack } from "@mui/material";
-import { GLCanvas } from "./WebGL/GLCanvas";
-import { FloatRotateScene } from "./WebGL/Shaders/FloatRotateScene";
-import { AppConfig } from "../config";
+import { GLCanvas } from "../WebGL/GLCanvas";
+import { FloatRotateScene } from "../WebGL/Shaders/FloatRotateScene";
+import { AppConfig } from "../../config";
 
 export default function MaintenancePage() {
   const url = "/peach.svg";

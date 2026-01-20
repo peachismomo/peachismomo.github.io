@@ -13,7 +13,6 @@ export const orange = "#FD971F";
 export const monoPurple = "#AE81FF";
 export const blue = "#66D9EF";
 
-
 export const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -37,7 +36,6 @@ export const darkTheme = createTheme({
     info: {
       main: blue,
     },
-
 
     background: {
       default: "#1E1F1C",
@@ -148,7 +146,6 @@ export const darkTheme = createTheme({
       },
     },
 
-
     MuiChip: {
       styleOverrides: {
         root: ({ ownerState, theme }) => {
@@ -158,20 +155,20 @@ export const darkTheme = createTheme({
           const main =
             colorKey === "default"
               ? theme.palette.error.main
-              : theme.palette[colorKey]?.main ?? theme.palette.error.main;
+              : (theme.palette[colorKey]?.main ?? theme.palette.error.main);
 
           return {
             fontFamily: `"JetBrains Mono", monospace`,
             ...(ownerState.variant === "outlined"
               ? {
-                color: main,
-                borderColor: alpha(main, 0.45),
-                backgroundColor: alpha(main, 0.08),
-              }
+                  color: main,
+                  borderColor: alpha(main, 0.45),
+                  backgroundColor: alpha(main, 0.08),
+                }
               : {
-                color: theme.palette.getContrastText(main),
-                backgroundColor: main,
-              }),
+                  color: theme.palette.getContrastText(main),
+                  backgroundColor: main,
+                }),
           };
         },
       },
