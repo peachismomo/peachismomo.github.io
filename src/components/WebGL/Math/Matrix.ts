@@ -8,6 +8,31 @@ export class Mat4 {
     if (!data) Mat4.identity(this);
   }
 
+  static buildTRS(out: Mat4, t: Vec3, r: Vec3, s: Vec3) {
+    const T = new Mat4();
+    const Rx = new Mat4();
+    const Ry = new Mat4();
+    const Rz = new Mat4();
+    const R = new Mat4();
+    const S = new Mat4();
+    const TR = new Mat4();
+
+    Mat4.translation(T, t);
+    Mat4.rotateX(Rx, r.x);
+    Mat4.rotateY(Ry, r.y);
+    Mat4.rotateZ(Rz, r.z);
+    Mat4.scale(S, s);
+
+    // R = Rz * Ry * Rx
+    Mat4.multiply(R, Rz, Ry);
+    Mat4.multiply(R, R, Rx);
+
+    Mat4.multiply(TR, T, R);
+    Mat4.multiply(out, TR, S);
+
+    return out;
+  }
+
   static identity(out?: Mat4): Mat4 {
     const m = out ? out.data : new Float32Array(16);
     m[0] = 1;

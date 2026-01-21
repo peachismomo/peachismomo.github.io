@@ -13,7 +13,6 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { GLCanvas } from "../WebGL/GLCanvas";
 import { AppConfig } from "../../config";
 import scrollToId from "../../utils/ScrollToId";
-import HeroBg from "./HeroBg";
 import { useMemo } from "react";
 import { PeachScene } from "../WebGL/Scenes/PeachScene";
 
@@ -28,7 +27,6 @@ function Hero() {
 
   return (
     <Box sx={{ pt: { xs: 6, md: 8 }, pb: { xs: 4, md: 6 } }}>
-      <HeroBg />
       <Container maxWidth="lg">
         <Stack
           direction={{ xs: "column", md: "row" }}

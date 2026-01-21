@@ -11,11 +11,11 @@ export abstract class SceneBase {
   private initialized = false;
   private initPromise: Promise<void> | null = null;
 
-  // incrementing token to invalidate in-flight init / renders after dispose
   private gen = 0;
 
   protected abstract onInit(): void | Promise<void>;
   protected abstract onRender(frame: FrameInfo): void;
+  protected abstract onUpdate(deltaTime: number): void;
   protected abstract onDispose(): void;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -23,12 +23,15 @@ export abstract class SceneBase {
     /* empty */
   }
 
-  /** Start init (once). Safe to call multiple times. */
   public init(gl: WebGL2RenderingContext): () => void {
     void this.ensureInit(gl);
 
     // GLCanvas can call this on unmount
     return () => this.dispose(gl);
+  }
+
+  public update(deltaTime: number): void {
+    this.onUpdate(deltaTime);
   }
 
   private ensureInit(gl: WebGL2RenderingContext): Promise<void> {
@@ -64,7 +67,7 @@ export abstract class SceneBase {
     void this.ensureInit(gl);
 
     if (!this.initialized) {
-      gl.clearColor(0, 0, 0, 1);
+      gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
       return;
     }

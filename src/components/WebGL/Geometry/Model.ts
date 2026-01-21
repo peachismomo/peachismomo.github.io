@@ -1,11 +1,12 @@
+import type { PBRBindings, PBRMaterial } from "../Material/PBRMaterial";
+import type { Mat4 } from "../Math/Matrix";
 import { Mesh, type AttrDesc } from "./Mesh";
 
-export type Mat4 = Float32Array; // column-major 4x4
-
-export interface ModelPart {
+export type ModelPart = {
   mesh: Mesh;
   worldMatrix: Mat4;
-}
+  material: PBRMaterial;
+};
 
 export class Model {
   public readonly parts: ModelPart[];
@@ -14,8 +15,10 @@ export class Model {
     this.parts = parts;
   }
 
-  draw(gl: WebGL2RenderingContext, setWorldMatrix: (m: Mat4) => void) {
+  draw(gl: WebGL2RenderingContext, setWorldMatrix: (m: Mat4) => void, u?: PBRBindings | null) {
     for (const p of this.parts) {
+      u && p.material.bind(gl, u);
+
       setWorldMatrix(p.worldMatrix);
       p.mesh.draw(gl);
     }
@@ -28,8 +31,8 @@ export class Model {
   static defaultLayout(
     hasNormal: boolean,
     hasUv: boolean,
+    hasTangent: boolean,
   ): { strideBytes: number; layout: AttrDesc[] } {
-    // locations: 0=pos, 1=normal, 2=uv
     let offset = 0;
     const layout: AttrDesc[] = [{ index: 0, size: 3, offset }];
     offset += 3 * 4;
@@ -42,6 +45,12 @@ export class Model {
       layout.push({ index: 2, size: 2, offset });
       offset += 2 * 4;
     }
+    if (hasTangent) {
+      layout.push({ index: 3, size: 4, offset });
+      offset += 4 * 4;
+    }
+
     return { strideBytes: offset, layout };
   }
+
 }
