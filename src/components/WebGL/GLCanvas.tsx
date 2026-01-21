@@ -6,6 +6,7 @@ export interface GLScene {
     gl: WebGL2RenderingContext,
     info: { timeMs: number; width: number; height: number },
   ) => void;
+  update?: (deltaTime: number) => void;
 }
 
 export function GLCanvas({
@@ -22,7 +23,11 @@ export function GLCanvas({
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const gl = canvas.getContext("webgl2", { alpha: true, antialias: true });
+    const gl = canvas.getContext("webgl2", {
+      alpha: true,
+      antialias: true,
+      premultipliedAlpha: true,
+    });
     if (!gl) return;
 
     const resize = () => {
@@ -42,10 +47,15 @@ export function GLCanvas({
     ro.observe(canvas.parentElement ?? canvas);
 
     const cleanup = scene.init(gl);
+    let lastTime = 0;
 
     let raf = 0;
     const loop = (t: number) => {
+      const dt = lastTime ? (t - lastTime) : 0;
+      lastTime = t;
+
       const { width, height } = resize();
+      scene.update?.(dt);
       scene.render(gl, { timeMs: t, width, height });
       raf = requestAnimationFrame(loop);
     };
@@ -62,7 +72,7 @@ export function GLCanvas({
     <canvas
       ref={canvasRef}
       className={className}
-      style={{ width: "100%", height: "100%", display: "block", ...style }}
+      style={{ background: "transparent", width: "100%", height: "100%", display: "block", ...style }}
     />
   );
 }

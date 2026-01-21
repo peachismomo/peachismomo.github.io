@@ -11,21 +11,22 @@ import {
 import GitHubIcon from "@mui/icons-material/GitHub";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { GLCanvas } from "../WebGL/GLCanvas";
-import { FloatRotateScene } from "../WebGL/Shaders/FloatRotateScene";
 import { AppConfig } from "../../config";
 import scrollToId from "../../utils/ScrollToId";
-import HeroBg from "./HeroBg";
+import { useMemo } from "react";
+import { PeachScene } from "../WebGL/Scenes/PeachScene";
 
 function Hero() {
   const theme = useTheme();
   const mdUp = useMediaQuery(theme.breakpoints.up("md"));
+  const scene = useMemo(() => new PeachScene(), []);
+
   const status = AppConfig.status;
 
   const tags = ["C/C++", "C#", "TypeScript"];
 
   return (
     <Box sx={{ pt: { xs: 6, md: 8 }, pb: { xs: 4, md: 6 } }}>
-      <HeroBg />
       <Container maxWidth="lg">
         <Stack
           direction={{ xs: "column", md: "row" }}
@@ -40,10 +41,7 @@ function Hero() {
                     Ian Chua
                   </Typography>
 
-                  <Typography
-                    variant="subtitle1"
-                    color="text.secondary"
-                  >
+                  <Typography variant="subtitle1" color="text.secondary">
                     @peachismomo
                   </Typography>
                 </Stack>
@@ -125,7 +123,7 @@ function Hero() {
               width: "100%",
             }}
           >
-            <GLCanvas scene={FloatRotateScene("/peach.svg")} />
+            <GLCanvas scene={scene} />
           </Box>
         </Stack>
       </Container>

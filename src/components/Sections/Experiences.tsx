@@ -17,7 +17,10 @@ export interface JobExperience {
 const PAGE_SIZE = 3;
 
 function Experiences() {
-  const experiences = useMemo(() => ReadJson<JobExperience>(JobExperiences), []);
+  const experiences = useMemo(
+    () => ReadJson<JobExperience>(JobExperiences),
+    [],
+  );
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const visible = experiences.slice(0, visibleCount);
@@ -28,10 +31,17 @@ function Experiences() {
   };
 
   return (
-    <Section id="experience" title="Experience" subtitle="A quick changelog of what I've done.">
+    <Section
+      id="experience"
+      title="Experience"
+      subtitle="A quick changelog of what I've done."
+    >
       <Stack spacing={2}>
         {visible.map((it) => (
-          <ExperienceCard key={`${it.company}-${it.title}-${it.when}`} job={it} />
+          <ExperienceCard
+            key={`${it.company}-${it.title}-${it.when}`}
+            job={it}
+          />
         ))}
 
         {hasMore && (
