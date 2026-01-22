@@ -1,5 +1,6 @@
-import type { PBRBindings, PBRMaterial } from "../Material/PBRMaterial";
+import type { PBRMaterial } from "../Material/PBRMaterial";
 import type { Mat4 } from "../Math/Matrix";
+import type { Shader } from "../Shaders/Shader";
 import { Mesh, type AttrDesc } from "./Mesh";
 
 export type ModelPart = {
@@ -15,10 +16,9 @@ export class Model {
     this.parts = parts;
   }
 
-  draw(gl: WebGL2RenderingContext, setWorldMatrix: (m: Mat4) => void, u?: PBRBindings | null) {
+  draw(gl: WebGL2RenderingContext, shader: Shader, setWorldMatrix: (m: Mat4) => void) {
     for (const p of this.parts) {
-      u && p.material.bind(gl, u);
-
+      p.material.bind(gl, shader);
       setWorldMatrix(p.worldMatrix);
       p.mesh.draw(gl);
     }

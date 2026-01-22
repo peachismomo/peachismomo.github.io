@@ -13,8 +13,8 @@ function Body(): ReactNode {
         mx: "auto",
       }}
     >
-      <Experiences />
       <FeaturedProjects />
+      <Experiences />
       <GithubProjects />
       <Toolbox />
     </Box>

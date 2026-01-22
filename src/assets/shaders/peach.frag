@@ -78,10 +78,8 @@ float GeometrySmith(vec3 N, vec3 V, vec3 L, float roughness) {
 }
 
 void main() {
-    // ---- sample textures ----
     vec4 baseSample = texture(u_baseColorTex, v_uv) * u_baseColorFactor;
 
-    // alpha mask
     if(u_alphaMode == 1) {
         if(baseSample.a < u_alphaCutoff)
             discard;
@@ -97,9 +95,6 @@ void main() {
     // normal map (tangent -> world)
     vec3 nTS = texture(u_normalTex, v_uv).xyz * 2.0f - 1.0f;
     nTS.xy *= u_normalScale;
-
-    // If normal maps look inverted on some assets, uncomment:
-    nTS.y *= -1.0;
 
     vec3 N = normalize(v_TBN * nTS);
 
@@ -136,7 +131,6 @@ void main() {
 
     vec3 Lo = (kD * albedo / PI + specular) * radiance * halfLambert;
 
-    // cheap ambient (matches your Pass0 style)
     vec3 ambient = u_ambience * albedo * ao;
 
     vec3 color = ambient + Lo + emission;
