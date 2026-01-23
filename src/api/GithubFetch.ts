@@ -14,6 +14,11 @@ interface GitHubReadmeResponse {
   content: string; // base64
 }
 
+function decodeBase64Utf8(b64: string): string {
+  const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+  return new TextDecoder("utf-8").decode(bytes);
+}
+
 async function fetchPublicRepos(username: string): Promise<GitHubRepo[]> {
   const response = await fetch(
     `https://api.github.com/users/${username}/repos?per_page=100&sort=updated`,
@@ -40,7 +45,8 @@ async function fetchPublicReposReadme(
   const data = (await response.json()) as GitHubReadmeResponse;
 
   try {
-    return atob(data.content);
+    const b64 = data.content.replace(/\s/g, "");
+    return decodeBase64Utf8(b64);
   } catch {
     return null;
   }
