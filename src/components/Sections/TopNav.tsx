@@ -101,8 +101,7 @@ function TopNav() {
             variant="outlined"
             startIcon={<DescriptionIcon />}
             onClick={() => {
-              // TODO: replace with your resume URL
-              window.open("/resume.pdf", "_blank");
+              window.open("/resume/resumeV1.pdf", "_blank");
             }}
             sx={{ display: { xs: "none", sm: "inline-flex" } }}
           >
