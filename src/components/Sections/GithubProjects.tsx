@@ -69,13 +69,15 @@ function GithubProjects() {
     return [...projects].slice(0, 3);
   }, [projects]);
 
-  // NEW: pick the list to render and paginate it
   const list = useMemo(() => {
     const usingFeaturedSet = FEATURED_REPOS.size > 0 && featured.length > 0;
     return usingFeaturedSet ? featured : projects;
   }, [projects, featured]);
 
-  const visible = useMemo(() => list.slice(0, visibleCount), [list, visibleCount]);
+  const visible = useMemo(
+    () => list.slice(0, visibleCount),
+    [list, visibleCount],
+  );
   const hasMore = visibleCount < list.length;
 
   const showMore = () => {
@@ -87,7 +89,11 @@ function GithubProjects() {
   };
 
   return (
-    <Section id="github" title="GitHub" subtitle="Some of my projects on GitHub">
+    <Section
+      id="github"
+      title="GitHub"
+      subtitle="Some of my projects on GitHub"
+    >
       {loading && (
         <Typography
           color="text.secondary"
@@ -98,7 +104,10 @@ function GithubProjects() {
       )}
 
       {error && (
-        <Typography color="error" sx={{ fontFamily: `"JetBrains Mono", monospace` }}>
+        <Typography
+          color="error"
+          sx={{ fontFamily: `"JetBrains Mono", monospace` }}
+        >
           {error}
         </Typography>
       )}
@@ -133,7 +142,11 @@ function GithubProjects() {
                         </IconButton>
                       </Stack>
 
-                      <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{ mt: 1 }}
+                      >
                         {p.desc || "No description provided."}
                       </Typography>
 
@@ -174,7 +187,11 @@ function GithubProjects() {
                         "& img": { maxWidth: "100%" },
                       }}
                     >
-                      {p.markdown ? <Markdown markdown={p.markdown} /> : "No README"}
+                      {p.markdown ? (
+                        <Markdown markdown={p.markdown} repo={p.title} />
+                      ) : (
+                        "No README"
+                      )}
                     </Box>
                   </Collapse>
                 </CardContent>

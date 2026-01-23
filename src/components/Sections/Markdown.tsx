@@ -2,7 +2,27 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Box, Typography, Link } from "@mui/material";
 
-export function Markdown({ markdown }: { markdown: string }) {
+function isAbsoluteUrl(url: string) {
+  return /^(https?:)?\/\//.test(url);
+}
+
+function joinUrl(base: string, path: string) {
+  const cleanedBase = base.endsWith("/") ? base : base + "/";
+  const cleanedPath = path.replace(/^\.?\//, "");
+  return cleanedBase + cleanedPath;
+}
+
+export function Markdown({
+  markdown,
+  repo,
+  branch = "main",
+}: {
+  markdown: string;
+  repo: string;
+  branch?: string;
+}) {
+  const rawBase = `https://raw.githubusercontent.com/peachismomo/${repo}/${branch}/`;
+
   return (
     <Box
       sx={{
@@ -42,22 +62,13 @@ export function Markdown({ markdown }: { markdown: string }) {
         "& pre code": { bgcolor: "transparent", p: 0 },
         "& img": { maxWidth: "100%", borderRadius: 2 },
         "& hr": { borderColor: "divider", my: 2 },
-        "& table": {
-          width: "100%",
-          borderCollapse: "collapse",
-          my: 1.5,
-        },
-        "& th, & td": {
-          border: "1px solid",
-          borderColor: "divider",
-          p: 1,
-        },
+        "& table": { width: "100%", borderCollapse: "collapse", my: 1.5 },
+        "& th, & td": { border: "1px solid", borderColor: "divider", p: 1 },
         "& th": { bgcolor: "action.hover" },
       }}
     >
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
-        // IMPORTANT: keep this false unless you *really* want HTML in READMEs
         skipHtml
         components={{
           a: ({ href, children }) => (
@@ -68,6 +79,13 @@ export function Markdown({ markdown }: { markdown: string }) {
           p: ({ children }) => (
             <Typography component="p">{children}</Typography>
           ),
+          img: ({ src, alt }) => {
+            const safeSrc = src ?? "";
+            const resolvedSrc = isAbsoluteUrl(safeSrc)
+              ? safeSrc
+              : joinUrl(rawBase, safeSrc);
+            return <img src={resolvedSrc} alt={alt ?? ""} />;
+          },
         }}
       >
         {markdown}
