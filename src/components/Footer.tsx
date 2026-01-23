@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Card,
   CardContent,
@@ -6,20 +7,28 @@ import {
   Button,
   Box,
   Divider,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import Section from "./Generic/Section";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LaunchIcon from "@mui/icons-material/Launch";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 function Footer() {
+  const [toast, setToast] = useState<string | null>(null);
+
+  const copy = async (label: string, value: string) => {
+    try {
+      await navigator.clipboard?.writeText(value);
+      setToast(`${label} copied`);
+    } catch {
+      setToast(`Failed to copy ${label.toLowerCase()}`);
+    }
+  };
+
   return (
-    <Box
-      sx={{
-        width: "80%",
-        mx: "auto",
-      }}
-    >
+    <Box sx={{ width: "80%", mx: "auto" }}>
       <Section
         id="contact"
         title="Contact"
@@ -28,39 +37,52 @@ function Footer() {
         <Card>
           <CardContent>
             <Stack spacing={1.2}>
-              <Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
-                <Button
-                  variant="contained"
-                  startIcon={<MailOutlineIcon />}
-                  onClick={() => {
-                    navigator.clipboard?.writeText("iancrb00@gmail.com");
-                  }}
-                >
-                  Copy Email
-                </Button>
+              <Stack
+                direction={{ xs: "column", sm: "row" }}
+                spacing={1.2}
+                alignItems={{ xs: "stretch", sm: "center" }}
+                justifyContent="space-between"
+              >
+                {/* Left: links */}
+                <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
+                  <Button
+                    variant="outlined"
+                    startIcon={<GitHubIcon />}
+                    href="..."
+                    target="_blank"
+                  >
+                    GitHub
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    endIcon={<LaunchIcon />}
+                    href="..."
+                    target="_blank"
+                  >
+                    LinkedIn
+                  </Button>
+                </Stack>
 
-                <Button
-                  variant="outlined"
-                  startIcon={<GitHubIcon />}
-                  component="a"
-                  href="https://github.com/peachismomo"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  GitHub
-                </Button>
+                {/* Right: copy */}
+                <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
+                  <Button
+                    variant="outlined"
+                    startIcon={<ContentCopyIcon />}
+                    onClick={() => copy("Email", "iancrb00@gmail.com")}
+                    sx={{ fontFamily: `"JetBrains Mono", monospace` }}
+                  >
+                    iancrb00@gmail.com
+                  </Button>
 
-                <Button
-                  variant="text"
-                  endIcon={<LaunchIcon />}
-                  component="a"
-                  href="https://www.linkedin.com/in/ian-chua-rong-bin/"
-                  target="_blank"
-                  rel="noreferrer"
-                  sx={{ color: "text.secondary" }}
-                >
-                  LinkedIn
-                </Button>
+                  <Button
+                    variant="outlined"
+                    startIcon={<ContentCopyIcon />}
+                    onClick={() => copy("Phone", "+65 9298 0585")}
+                    sx={{ fontFamily: `"JetBrains Mono", monospace` }}
+                  >
+                    +65 9298 0585
+                  </Button>
+                </Stack>
               </Stack>
             </Stack>
           </CardContent>
@@ -86,6 +108,17 @@ function Footer() {
           </Stack>
         </Box>
       </Section>
+
+      <Snackbar
+        open={!!toast}
+        autoHideDuration={2200}
+        onClose={() => setToast(null)}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert severity="success" variant="filled" sx={{ borderRadius: 2 }}>
+          {toast}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }

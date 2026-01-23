@@ -1,5 +1,10 @@
 import type { ProjectType } from "../types/types";
 
+const IS_PROD = import.meta.env.PROD;
+const GH_TOKEN = !IS_PROD
+  ? (import.meta.env.VITE_GH_TOKEN as string | undefined)
+  : undefined;
+
 interface GitHubRepo {
   name: string;
   description: string | null;
@@ -10,18 +15,24 @@ interface GitHubRepo {
   updated_at: string;
 }
 
-interface GitHubReadmeResponse {
-  content: string; // base64
+function ghFetch(input: string, init?: RequestInit) {
+  return fetch(input, {
+    ...init,
+    headers: {
+      ...(init?.headers ?? {}),
+      ...(GH_TOKEN ? { Authorization: `Bearer ${GH_TOKEN}` } : {}),
+      Accept: "application/vnd.github+json",
+    },
+  });
 }
 
-function decodeBase64Utf8(b64: string): string {
-  const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
-  return new TextDecoder("utf-8").decode(bytes);
-}
-
-async function fetchPublicRepos(username: string): Promise<GitHubRepo[]> {
-  const response = await fetch(
-    `https://api.github.com/users/${username}/repos?per_page=100&sort=updated`,
+async function fetchPublicRepos(
+  username: string,
+  page: number,
+  perPage: number,
+): Promise<GitHubRepo[]> {
+  const response = await ghFetch(
+    `https://api.github.com/users/${username}/repos?per_page=${perPage}&page=${page}&sort=updated`,
   );
 
   if (!response.ok) {
@@ -37,19 +48,18 @@ async function fetchPublicReposReadme(
   owner: string,
   repo: string,
 ): Promise<string | null> {
-  const response = await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/readme`,
-  );
-  if (!response.ok) return null;
+  const urls = [
+    `https://raw.githubusercontent.com/${owner}/${repo}/main/README.md`,
+    `https://raw.githubusercontent.com/${owner}/${repo}/master/README.md`,
+    `https://raw.githubusercontent.com/${owner}/${repo}/master/readme.md`,
+    `https://raw.githubusercontent.com/${owner}/${repo}/main/readme.md`,
+  ];
 
-  const data = (await response.json()) as GitHubReadmeResponse;
-
-  try {
-    const b64 = data.content.replace(/\s/g, "");
-    return decodeBase64Utf8(b64);
-  } catch {
-    return null;
+  for (const url of urls) {
+    const res = await fetch(url);
+    if (res.ok) return await res.text(); // proper UTF-8
   }
+  return null;
 }
 
 function extractTags(repo: GitHubRepo): string[] {
@@ -61,28 +71,29 @@ function extractTags(repo: GitHubRepo): string[] {
   return [...tags];
 }
 
-export async function FetchProjects(
-  username = "peachismomo",
+export async function FetchReadme(
+  owner: string,
+  repo: string,
+): Promise<string | null> {
+  return fetchPublicReposReadme(owner, repo);
+}
+
+export async function FetchProjectsPage(
+  username: string,
+  page: number,
+  perPage: number,
 ): Promise<ProjectType[]> {
-  const repos = await fetchPublicRepos(username);
+  const repos = await fetchPublicRepos(username, page, perPage);
 
-  const projects = await Promise.all(
-    repos.map(async (repo) => {
-      const markdown = await fetchPublicReposReadme(username, repo.name);
-
-      return {
-        title: repo.name,
-        desc: repo.description ?? "",
-        tags: extractTags(repo),
-        htmlUrl: repo.html_url,
-        homepage: repo.homepage,
-        markdown,
-        language: repo.language ?? null,
-        topics: repo.topics ?? [],
-        updatedAt: repo.updated_at,
-      } satisfies ProjectType;
-    }),
-  );
-
-  return projects;
+  return repos.map((repo) => ({
+    title: repo.name,
+    desc: repo.description ?? "",
+    tags: extractTags(repo),
+    htmlUrl: repo.html_url,
+    homepage: repo.homepage,
+    markdown: null,
+    language: repo.language ?? null,
+    topics: repo.topics ?? [],
+    updatedAt: repo.updated_at,
+  })) satisfies ProjectType[];
 }

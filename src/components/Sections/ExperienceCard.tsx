@@ -1,5 +1,6 @@
 import { Card, CardContent, Typography, Stack, Chip } from "@mui/material";
 import type { JobExperience } from "./Experiences";
+import { monoComment } from "../../themes/Themes";
 
 interface ExperienceCardProps {
   job: JobExperience;
@@ -20,15 +21,17 @@ function ExperienceCard(props: ExperienceCardProps) {
           {props.job.when}
         </Typography>
 
-        <Typography variant="h5">
-          {props.job.title}
-        </Typography>
+        <Typography variant="h5">{props.job.title}</Typography>
 
-        <Typography variant="subtitle2" sx={{ mb: 3 }}>
+        <Typography variant="subtitle2" sx={{ mb: 2 }} color={monoComment}>
           {props.job.company}
         </Typography>
 
-        <Typography variant="body2" sx={{ whiteSpace: "pre-line" }}>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ whiteSpace: "pre-line", mb: 2 }}
+        >
           {props.job.desc}
         </Typography>
 

@@ -13,6 +13,27 @@ export const orange = "#FD971F";
 export const monoPurple = "#AE81FF";
 export const blue = "#66D9EF";
 
+// Monospace / editor-style fonts
+export const monoJetBrains = `"JetBrains Mono", monospace`;
+export const monoFira = `"Fira Code", monospace`;
+export const monoCascadia = `"Cascadia Code", monospace`;
+export const monoIbmPlex = `"IBM Plex Mono", monospace`;
+export const monoSource = `"Source Code Pro", monospace`;
+export const monoIosevka = `"Iosevka", monospace`;
+export const monoVictor = `"Victor Mono", monospace`;
+export const monoInconsolata = `"Inconsolata", monospace`;
+export const monoHack = `"Hack", monospace`;
+export const monoRecursive = `"Recursive Mono", monospace`;
+
+// UI / body fonts with a “developer” feel
+export const uiInter = `"Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif`;
+export const uiIbmPlex = `"IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif`;
+export const uiSpaceGrotesk = `"Space Grotesk", system-ui, sans-serif`;
+export const uiManrope = `"Manrope", system-ui, sans-serif`;
+export const uiDmSans = `"DM Sans", system-ui, sans-serif`;
+export const uiSatoshi = `"Satoshi", system-ui, sans-serif`;
+export const uiSystem = `system-ui, -apple-system, BlinkMacSystemFont, sans-serif`;
+
 export const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -55,7 +76,7 @@ export const darkTheme = createTheme({
   },
 
   typography: {
-    fontFamily: `"Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif`,
+    fontFamily: monoFira,
 
     // Headings: all one color
     h1: { fontWeight: 700, letterSpacing: "-0.02em", color: monoHeading },
